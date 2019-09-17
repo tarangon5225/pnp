@@ -16,7 +16,9 @@ AYUDAS Y TRAMPAS:
 Autores: Brayan Cruz - Tomás Arango
 Fecha de entrega:18/09/2019
 '''
+# Aumenta la cantidad de pasos que puede ejecutar Reeborg a 5000
 set_max_nb_steps(5000)
+import random
 '''
 Descripción: Esta función se usa con el fin de utilizar los robots
 que sean necesarios, dependiendo a la cantidad de reeborgs que vamos a usar, se puede como máximo 4 jugadores
@@ -30,6 +32,7 @@ r4 = UsedRobot()
 #Variables globales
 mover = 0
 mover_1 = 0
+robot = r1
 
 '''
 Descripción: Reeborg gira a la derecha
@@ -48,7 +51,7 @@ mira hacia la derecha || mira hacia la izquierda
 def walk():
     global mover
     while mover != 0:
-        if front_is_clear():
+        if robot.front_is_clear():
             robot.move()
             mover -= 1
         else:
@@ -83,7 +86,7 @@ def change_lineL():
         turn_right()
         robot.move()
         mover -= 1
-        robot.turn_right()
+        turn_right()
     else:
         recolectar()
 '''
@@ -99,8 +102,8 @@ def walk_world(dado):
     global mover_1
     mover = dado
     mover_1 = dado
-    robot.walk()
-    if object_here("square"):
+    walk()
+    if robot.object_here("square"):
         change_lineR()
         walk()
     else:
@@ -113,8 +116,8 @@ Hace la acción indicada para cada objeto.
 '''    
 def recolectar():
     global mover_1
-    if object_here("tulip"):
-        robot.take("tulip")
+    if robot.object_here("tulip"):
+        #robot.take("tulip")
         robot.turn_left()
         robot.turn_left()
         while mover_1 != 0:
@@ -122,24 +125,21 @@ def recolectar():
             mover_1 -= 1
         robot.turn_left()
         robot.turn_left()
-    elif object_here("triangle"):
-        robot.take("triangle")
+    elif robot.object_here("triangle"):
+        #robot.take("triangle")
         robot.turn_left()
         robot.move()
         robot.turn_left()
-    elif object_here("beeper"):
-        robot.take("beeper")
+    elif robot.object_here("beeper"):
+        #robot.take("beeper")
         robot.turn_left()
         robot.move()
         robot.turn_left()
-    elif object_here("star"):
-        robot.take("star")
+    elif robot.object_here("star"):
+        #robot.take("star")
         while mover_1 != 0:
             robot.move()
             mover_1 -= 1
-        
-#walk_world(5)
-#walk_world(6)
 
 '''
 Descripción: Permite el movimiento del Reeborg escogido para cada jugador.
@@ -147,15 +147,29 @@ Recibe el número de casillas que avanza donde 0 < avanza < 7
 Recibe el jugador que tiene el turno donde 0 < jugador < 5
 '''
 def turno(avanza, jugador):
-	if jugador == 1:
-		robot = r1
-		walk_world(avanza)
-	elif jugador == 2:
-		robot = r2
-		walk_world(avanza)
-	elif jugador == 3:
-		robot = r3
-		walk_world(avanza)
-	elif jugador == 4:
-		robot = r4
-		walk_world(avanza)
+    think(1)
+    global robot
+    if jugador == 1:
+        robot = r1
+        walk_world(avanza)
+    elif jugador == 2:
+        robot = r2
+        walk_world(avanza)
+    elif jugador == 3:
+        robot = r3
+        walk_world(avanza)
+    elif jugador == 4:
+        robot = r4
+        walk_world(avanza)
+        
+
+repeat 50:
+    x = random.choice((1,2,3,4,5,6))
+    turno(x,1)
+    y = random.choice((1,2,3,4,5,6))
+    turno(y,2)
+
+################################################################
+# WARNING: Do not change this comment.
+# Library Code is below.
+################################################################

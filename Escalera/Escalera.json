@@ -591,5 +591,18 @@
     "12,12": [
       "#ffffff"
     ]
+  },
+  "goal": {
+    "possible_final_positions": [
+      [
+        1,
+        12
+      ]
+    ],
+    "position": {
+      "image": "racing_flag",
+      "x": 1,
+      "y": 12
+    }
   }
 }
