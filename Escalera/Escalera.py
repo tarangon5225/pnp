@@ -16,6 +16,7 @@ AYUDAS Y TRAMPAS:
 Autores: Brayan Cruz - Tomás Arango
 Fecha de entrega:18/09/2019
 '''
+set_max_nb_steps(5000)
 '''
 Descripción: Esta función se usa con el fin de utilizar los robots
 que sean necesarios, dependiendo a la cantidad de reeborgs que vamos a usar, se puede como máximo 4 jugadores
