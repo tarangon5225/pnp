@@ -2,22 +2,17 @@
 Descripción: Nos encontramos con un juego muy conocido por todos denominado escalerita en un mundo de 12*12, donde se enfrentarán
 los jugadores atravesando por todo el mundo encontraran ayudas o dificultades para llegar a la meta, avanzaran de manera
 escalonada por filas, hasta llegar a su meta.
-
 LAS REGLAS SON:
-
 1) Será considerado ganador, el primer jugador en llegar a la meta casilla (1,12).
 2) Para iniciar se lanzará un dado, quien saque el mayor número iniciará la partida.
 3) Solo será un turno de movimiento y posteriormente pasará el turno, el siguiente jugador hará lo mismo.
 4) El jugador que robe turno, será penalizado perdiendo su siguiente turno.
-
 AYUDAS Y TRAMPAS:
-
 - BEEPER: Si reeborg se detiene sobre un Beeper, automáticamente este será impulsado por su fuerza y podrá subir una fila.
 - ESTRELLA: Si Reeborg se detiene sobre una estrella, avanza de nuevo la cantidad de casillas que obtuvo en el dado.
 - TULIPAN: Cuando Reeborg se detiene sobre un tulipán él lo come generando una confusión de donde se encuentra, da un giro de
     180° y se regresará las casillas avanzadas.
 - TRIANGULO: Si Reeborg para encima de un trangulo, este afectara sus sentidos y hara que baje una linea.
-
 Autores: Brayan Cruz - Tomás Arango
 Fecha de entrega:18/09/2019
 '''
@@ -41,7 +36,7 @@ Pos: Reeborg gira 270° de la posición inicial
 '''
 def turn_right():
     repeat 3:
-        turn_left()
+        robot.turn_left()
 '''
 Descripción: Caminar hacia el frente mientras no encuentre pared.
 Antes de avanzar valida si hay elementos y lo recoge.
@@ -53,7 +48,7 @@ def walk():
     global mover
     while mover != 0:
         if front_is_clear():
-            move()
+            robot.move()
             mover -= 1
         else:
             break
@@ -69,10 +64,10 @@ Pos: Reeborg está en el X mayor && y+=1 && mira hacia la izquierda
 def change_lineR():
     global mover
     if mover != 0:
-        turn_left()
-        move()
+        robot.turn_left()
+        robot.move()
         mover -= 1
-        turn_left()
+        robot.turn_left()
     else:
         recolectar()
 '''
@@ -85,9 +80,9 @@ def change_lineL():
     global mover
     if mover != 0:
         turn_right()
-        move()
+        robot.move()
         mover -= 1
-        turn_right()
+        robot.turn_right()
     else:
         recolectar()
 '''
@@ -103,7 +98,7 @@ def walk_world(dado):
     global mover_1
     mover = dado
     mover_1 = dado
-    walk()
+    robot.walk()
     if object_here("square"):
         change_lineR()
         walk()
@@ -118,29 +113,48 @@ Hace la acción indicada para cada objeto.
 def recolectar():
     global mover_1
     if object_here("tulip"):
-        take("tulip")
-        turn_left()
-        turn_left()
+        robot.take("tulip")
+        robot.turn_left()
+        robot.turn_left()
         while mover_1 != 0:
-            move()
+            robot.move()
             mover_1 -= 1
-        turn_left()
-        turn_left()
+        robot.turn_left()
+        robot.turn_left()
     elif object_here("triangle"):
-        take("triangle")
-        turn_left()
-        move()
-        turn_left()
+        robot.take("triangle")
+        robot.turn_left()
+        robot.move()
+        robot.turn_left()
     elif object_here("beeper"):
-        take("beeper")
-        turn_left()
-        move()
-        turn_left()
+        robot.take("beeper")
+        robot.turn_left()
+        robot.move()
+        robot.turn_left()
     elif object_here("star"):
-        take("star")
+        robot.take("star")
         while mover_1 != 0:
-            move()
+            robot.move()
             mover_1 -= 1
         
-walk_world(5)
-walk_world(6)
+#walk_world(5)
+#walk_world(6)
+
+'''
+Descripción: Permite el movimiento del Reeborg escogido para cada jugador.
+Recibe el número de casillas que avanza donde 0 < avanza < 7
+Recibe el jugador que tiene el turno donde 0 < jugador < 5
+'''
+def turno(avanza, jugador):
+	if jugador == 1:
+		robot = r1
+		walk_world(avanza)
+	elif jugador == 2:
+		robot = r2
+		walk_world(avanza)
+	elif jugador == 3:
+		robot = r3
+		walk_world(avanza)
+	elif jugador == 4:
+		robot = r4
+		walk_world(avanza)
