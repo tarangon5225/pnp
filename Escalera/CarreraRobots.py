@@ -1,20 +1,21 @@
 '''
-Descripción: Nos encontramos con un juego muy conocido por todos denominado escalerita en un mundo de 12*12, donde se enfrentarán
-los jugadores atravesando por todo el mundo encontraran ayudas o dificultades para llegar a la meta, avanzaran de manera
-escalonada por filas, hasta llegar a su meta.
+Nos encontramos con un juego denominado carrera de Robots, en un mundo de 12x12
+donde se enfrentarán los 4 robots atravesando todo el mundo
+encontrarán ayudas o trampas para llegar a la meta.
 LAS REGLAS SON:
-1) Será considerado ganador, el primer jugador en llegar a la meta casilla (1,12).
-2) Para iniciar se lanzará un dado, quien saque el mayor número iniciará la partida.
-3) Solo será un turno de movimiento y posteriormente pasará el turno, el siguiente jugador hará lo mismo.
-4) El jugador que robe turno, será penalizado perdiendo su siguiente turno.
-AYUDAS Y TRAMPAS:
-- BEEPER: Si reeborg se detiene sobre un Beeper, automáticamente este será impulsado por su fuerza y podrá subir una fila.
-- ESTRELLA: Si Reeborg se detiene sobre una estrella, avanza de nuevo la cantidad de casillas que obtuvo en el dado.
-- TULIPAN: Cuando Reeborg se detiene sobre un tulipán él lo come generando una confusión de donde se encuentra, da un giro de
-    180° y se regresará las casillas avanzadas.
-- TRIANGULO: Si Reeborg para encima de un trangulo, este afectara sus sentidos y hara que baje una linea.
+1) Será considerado ganador, el primer robot en llegar a la meta, casilla (1,12).
+2) Se deberá escoger el robot a apostar para que gane, antes de iniciar la carrera.
+AYUDAS:
+- BEEPER: Si Reeborg se detiene sobre un Beeper,
+automáticamente este será impulsado una fila.
+- ESTRELLA: Si Reeborg se detiene sobre una estrella,
+avanza de nuevo la cantidad de casillas que obtuvo en el dado.
+TRAMPAS:
+- TULIPAN: Si Reeborg se detiene sobre un tulipán, da un giro de 180°
+y se regresará las casillas avanzadas.
+- TRIANGULO: Si Reeborg se detiene sobre de un triángulo, este hará que baje una linea.
 Autores: Brayan Cruz - Tomás Arango
-Fecha de entrega:18/09/2019
+Fecha de entrega:20/09/2019
 '''
 # Aumenta la cantidad de pasos que puede ejecutar Reeborg a 10000
 think(1)
