@@ -17,7 +17,8 @@ Autores: Brayan Cruz - Tomás Arango
 Fecha de entrega:18/09/2019
 '''
 # Aumenta la cantidad de pasos que puede ejecutar Reeborg a 5000
-set_max_nb_steps(5000)
+think(1)
+set_max_nb_steps(7000)
 import random
 '''
 Descripción: Esta función se usa con el fin de utilizar los robots
@@ -33,6 +34,7 @@ r4 = UsedRobot()
 mover = 0
 mover_1 = 0
 robot = r1
+turno = 0
 
 '''
 Descripción: Reeborg gira a la derecha
@@ -97,7 +99,7 @@ Mirando hacia la derecha.
 Pos: Reeborg está en la casilla (12,1) mirando hacia la izquierda.
 '''    
 def walk_world(dado):
-    think(1)
+    #think(1)
     global mover
     global mover_1
     mover = dado
@@ -149,6 +151,8 @@ Recibe el jugador que tiene el turno donde 0 < jugador < 5
 def turno(avanza, jugador):
     think(1)
     global robot
+    global turno
+    turno = jugador
     if jugador == 1:
         robot = r1
         walk_world(avanza)
@@ -161,14 +165,23 @@ def turno(avanza, jugador):
     elif jugador == 4:
         robot = r4
         walk_world(avanza)
-        
 
-repeat 50:
+def en_meta():
+    if robot.wall_in_front():
+        if robot.wall_on_right():
+            return True
+    else:
+        return False
+
+while not en_meta():
+    
     x = random.choice((1,2,3,4,5,6))
     turno(x,1)
     y = random.choice((1,2,3,4,5,6))
     turno(y,2)
-
+print("El jugador " + turno + " fue el ganador")
+print("¡Felicitaciones!")
+done()
 ################################################################
 # WARNING: Do not change this comment.
 # Library Code is below.
