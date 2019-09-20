@@ -18,8 +18,10 @@ Autores: Brayan Cruz - Tomás Arango
 Fecha de entrega:20/09/2019
 '''
 # Aumenta la cantidad de pasos que puede ejecutar Reeborg a 10000
-think(1)
+#think(1)
 set_max_nb_steps(10000)
+#Activar el sonido
+sound(True)
 # Importa la libreria random
 import random
 '''
@@ -161,7 +163,7 @@ Recibe el número de casillas que avanza donde 0 < avanza < 7
 Recibe el jugador que tiene el turno donde 0 < jugador < 3
 '''
 def turno(avanza, jugador):
-    think(1)
+    #think(1)
     global robot
     global turn
     turn = jugador
@@ -199,7 +201,7 @@ def jugar():
     print("encontrarán ayudas o trampas para llegar a la meta")
     print("LAS REGLAS SON:")
     print("1) Será considerado ganador, el primer jugador en llegar a la meta, casilla (1,12).")
-    print("2) Solo será un turno de movimiento y posteriormente pasará el turno, el siguiente jugador hará lo mismo.")
+    print("2) Solo será un turno de movimiento y luego pasará el turno, el siguiente jugador hará lo mismo.")
     print("AYUDAS:")
     print("- BEEPER: Si Reeborg se detiene sobre un Beeper,")
     print("automáticamente este será impulsado una fila.")
